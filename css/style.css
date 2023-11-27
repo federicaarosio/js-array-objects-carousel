@@ -39,6 +39,10 @@ button {
     transform: translateX(-50%)
 }
 
+button:hover {
+    background-color: gray;
+}
+
 button.previous {
     left: 50%;
     top: 2%;
@@ -55,4 +59,12 @@ div.caption-wrapper {
     bottom: 15%;
     color: white;
     text-align: right;
+}
+
+.visible {
+    display: block;
+}
+
+.invisible {
+    display: none;
 }
