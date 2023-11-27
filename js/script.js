@@ -22,11 +22,6 @@ const images = [
     }
 ];
 
-//ci sarà eventlistener
-    //creo elementi dei bottoni
-    //devo inserire una classe per l'immagine visibile e una per le immagini non visibili
-    //al clic rimuovo
-
 
 //inserisco il contenuto degli elementi dell'array
 const carouselWrapperEl = document.querySelector("section.wrapper");
@@ -56,16 +51,21 @@ for (let i = 0; i < images.length; i++) {
 // Seleziono tutti gli items
 const carouselItemsElements = document.querySelectorAll(".item");
 
-//decido che l'elemento attivo è lo 0
+//decido che l'elemento attivo in patenza è lo 0
 let activeItem = 0;
+let lastItem = images.length - 1;
 carouselItemsElements[activeItem].classList.add('active')
-
 
 //Button next
 const buttonNextEl = document.querySelector("button.next");
 buttonNextEl.addEventListener("click", function() {
     carouselItemsElements[activeItem].classList.remove('active');
-    activeItem = activeItem + 1;
+    if(activeItem === lastItem) {
+        activeItem = activeItem - lastItem;
+    } else {
+        activeItem = activeItem + 1;
+    }
+    
     carouselItemsElements[activeItem].classList.add('active');
 });
 
@@ -73,7 +73,12 @@ buttonNextEl.addEventListener("click", function() {
 const buttonPreviousEl = document.querySelector("button.previous");
 buttonPreviousEl.addEventListener("click", function() {
     carouselItemsElements[activeItem].classList.remove('active');
-    activeItem = activeItem - 1;
+    if(activeItem === 0) {
+       activeItem = lastItem;
+    } else {
+        activeItem = activeItem - 1;
+    }
+    
     carouselItemsElements[activeItem].classList.add('active');
 });
 
