@@ -56,30 +56,43 @@ let activeItem = 0;
 let lastItem = images.length - 1;
 carouselItemsElements[activeItem].classList.add('active')
 
-//Button next
-const buttonNextEl = document.querySelector("button.next");
-buttonNextEl.addEventListener("click", function() {
-    carouselItemsElements[activeItem].classList.remove('active');
-    if(activeItem === lastItem) {
-        activeItem = activeItem - lastItem;
-    } else {
-        activeItem = activeItem + 1;
-    }
-    
-    carouselItemsElements[activeItem].classList.add('active');
-});
-
 //Button previous
 const buttonPreviousEl = document.querySelector("button.previous");
-buttonPreviousEl.addEventListener("click", function() {
+buttonPreviousEl.addEventListener("click", slidePrev);
+
+//Button next
+const buttonNextEl = document.querySelector("button.next");
+buttonNextEl.addEventListener("click", slideNext);
+
+//autoplay ogni 3s
+setInterval(slideNext, 3000);
+
+
+// FUNZIONI
+/**
+ * Slide to previous image in the carousel
+ */
+function slidePrev() {
     carouselItemsElements[activeItem].classList.remove('active');
     if(activeItem === 0) {
        activeItem = lastItem;
     } else {
-        activeItem = activeItem - 1;
+        activeItem += - 1;
     }
     
     carouselItemsElements[activeItem].classList.add('active');
-});
+}
 
-
+/**
+ * Slide to next image in the carousel
+ */
+function slideNext() {
+    carouselItemsElements[activeItem].classList.remove('active');
+    if(activeItem === lastItem) {
+        activeItem += - lastItem;
+    } else {
+        activeItem += + 1;
+    }
+    
+    carouselItemsElements[activeItem].classList.add('active');
+}
