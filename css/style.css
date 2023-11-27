@@ -20,6 +20,11 @@ main section.wrapper {
     position: relative;
 }
 
+section.wrapper div.item {
+    width: 100%;
+    height: 100%;
+}
+
 section.wrapper img {
     width: 100%;
     height: 100%;
@@ -61,10 +66,10 @@ div.caption-wrapper {
     text-align: right;
 }
 
-.visible {
-    display: block;
+.hidden {
+    display: none;
 }
 
-.invisible {
-    display: none;
+.active {
+    display: block;
 }

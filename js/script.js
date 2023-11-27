@@ -22,10 +22,6 @@ const images = [
     }
 ];
 
-// Milestone 1:
-// Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
-// Al click dell'utente sulle frecce verso l'alto o verso il basso, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
-
 //ci sarà eventlistener
     //creo elementi dei bottoni
     //devo inserire una classe per l'immagine visibile e una per le immagini non visibili
@@ -43,28 +39,36 @@ for (let i = 0; i < images.length; i++) {
     const text = currentImage.title;
 
     const singleCarouselEl = `
-        <img src="${img}" alt="">
-            <button class="previous"><i class="fa-solid fa-chevron-up"></i></button>
-            <button class="next"><i class="fa-solid fa-chevron-down"></i></button>
-            <div class="caption-wrapper">
-                <h1 class="title">
-                    ${title}
-                </h1>
-                <p class="text">
-                    ${text}
-                </p>
-            </div>`
-
+    <div class="item hidden">
+        <img class="image" src="${img}" alt="comics hero illustration">
+        <div class="caption-wrapper">
+            <h1 class="title">
+                ${title}
+            </h1>
+            <p class="text">
+                ${text}
+            </p>
+        </div>
+    </div>`
     carouselWrapperEl.innerHTML += singleCarouselEl;
 }
 
+// Seleziono tutti gli items
+const carouselItemsElements = document.querySelectorAll(".item");
+
+//decido che l'elemento attivo è lo 0
+let activeItem = 0;
+carouselItemsElements[activeItem].classList.add('active')
+
+const buttonNextEl = document.querySelector("button.next");
+
+buttonNextEl.addEventListener("click", function() {
+    carouselItemsElements[activeItem].classList.remove('active');
+    activeItem = activeItem + 1;
+    carouselItemsElements[activeItem].classList.add('active');
 
 
-// const buttonPreviousEl = document.querySelector("button.previous");
+})
 
-// buttonPreviousEl.addEventListener("click", function() {
-//     for (let i = 0; i < images.length; i++) {
-//         const element = images[i];
-        
-//     }
-// })
+
+
