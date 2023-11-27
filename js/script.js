@@ -36,7 +36,7 @@ for (let i = 0; i < images.length; i++) {
 
     const img = currentImage.image;
     const title = currentImage.title;
-    const text = currentImage.title;
+    const text = currentImage.text;
 
     const singleCarouselEl = `
     <div class="item hidden">
@@ -60,15 +60,21 @@ const carouselItemsElements = document.querySelectorAll(".item");
 let activeItem = 0;
 carouselItemsElements[activeItem].classList.add('active')
 
-const buttonNextEl = document.querySelector("button.next");
 
+//Button next
+const buttonNextEl = document.querySelector("button.next");
 buttonNextEl.addEventListener("click", function() {
     carouselItemsElements[activeItem].classList.remove('active');
     activeItem = activeItem + 1;
     carouselItemsElements[activeItem].classList.add('active');
+});
 
-
-})
-
+//Button previous
+const buttonPreviousEl = document.querySelector("button.previous");
+buttonPreviousEl.addEventListener("click", function() {
+    carouselItemsElements[activeItem].classList.remove('active');
+    activeItem = activeItem - 1;
+    carouselItemsElements[activeItem].classList.add('active');
+});
 
 
